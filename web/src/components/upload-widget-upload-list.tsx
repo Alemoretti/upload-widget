@@ -1,5 +1,9 @@
 export function UploadWidgetUploadList() {
-    return (
-        <div className="p-3 h-48"></div>
-    )
+  return (
+    <div className="p-3 flex flex-col gap-3">
+      <span className="text-xs font-medium">
+        Uploaded files
+      </span>
+    </div>
+  )
 }
