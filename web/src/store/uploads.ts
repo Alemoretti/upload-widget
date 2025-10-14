@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { enableMapSet } from "immer";
 import { immer } from "zustand/middleware/immer";
+import { uploadFileToStorage } from "../http/upload-file-to-storage";
 
 export type Upload = {
   name: string;
@@ -16,21 +17,37 @@ enableMapSet();
 
 export const useUploads = create<UploadState>()(
   // @ts-expect-error - Zustand + Immer type compatibility issue
-  immer((set) => ({
-    uploads: new Map(),
-    addUploads: (files: File[]) => {
-      set((state) => {
-        for (const file of files) {
-          const uploadId = crypto.randomUUID();
+  immer((set, get) => {
+    async function processUpload(uploadId: string) {
+      const upload = get().uploads.get(uploadId);
 
-          const upload: Upload = {
-            name: file.name,
-            file,
-          };
+      if (!upload) {
+        return;
+      }
 
+      await uploadFileToStorage({ file: upload.file });
+    }
+
+    function addUploads(files: File[]) {
+      for (const file of files) {
+        const uploadId = crypto.randomUUID();
+
+        const upload: Upload = {
+          name: file.name,
+          file,
+        };
+
+        set((state) => {
           state.uploads.set(uploadId, upload);
-        }
-      });
-    },
-  }))
+        });
+
+        processUpload(uploadId);
+      }
+    }
+
+    return {
+      uploads: new Map(),
+      addUploads,
+    };
+  })
 );
