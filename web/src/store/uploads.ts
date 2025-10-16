@@ -151,7 +151,7 @@ export const usePendingUploads = () => {
       const { total, uploaded } = Array.from(store.uploads.values()).reduce(
         (acc, upload) => {
           if (upload.compressedSizeInBytes) {
-          acc.uploaded += upload.uploadSizeInBytes;
+            acc.uploaded += upload.uploadSizeInBytes;
           }
 
           acc.total +=
