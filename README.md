@@ -2,6 +2,7 @@
 
 A modern, animated file upload widget with image compression, progress tracking, and cloud storage integration. Built with React, TypeScript, Node.js and Framer Motion.
 
+<img width="453" height="583" alt="upload-widget" src="https://github.com/user-attachments/assets/f15113ae-e8af-431f-bfbc-8ea25d27fadb" />
 
 
 ## ✨ Features
@@ -193,18 +194,6 @@ cd server
 # Set environment variables
 # Deploy the server
 ```
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## 🙏 Acknowledgments
 
